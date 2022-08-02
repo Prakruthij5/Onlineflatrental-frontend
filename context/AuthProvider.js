@@ -1,12 +1,14 @@
-import { createContext , useState } from "react";
+/* import { createContext , useState } from "react";
 
 const AuthContext = createContext({});
-
+const FlatContext = createContext({});
 export const AuthProvider = ({children})=>{
-    const [auth,setAuth] = useState({});
+    // const [auth,setAuth] = useState({});
+const [flatId,setFlatId]=useState({});
+const [BookingNo,setBookingNo]=useState({});
 
-    return (<AuthContext.Provider value={{auth,setAuth}}>
+    return (<FlatContext.Provider value={{flatId,setFlatId,BookingNo,setBookingNo}}>
         {children}
-    </AuthContext.Provider>)
+    </FlatContext.Provider>)
 }
-export default AuthContext;
+export default FlatContext; */

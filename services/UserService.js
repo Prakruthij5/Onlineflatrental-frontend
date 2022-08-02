@@ -6,7 +6,7 @@ const get = user_Id => {
   return http.get(`/User/viewUser/${user_Id}`);
 };
 const create = data => {
-  return http.post("/addUser", data);
+  return http.post("/LandlordAndTenant/addUser", data);
 };
 const update = (user_Id, data) => {
   return http.put(`/updateUser/${user_Id}`, data);

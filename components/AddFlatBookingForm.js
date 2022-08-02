@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-
+import {Link} from 'react-router-dom'
 import { addFlatBooking } from '../reducers/flatbookings';
 export default function AddFlatBookingForm(props){
 
@@ -127,9 +127,12 @@ value={tenant.tenant_id}
 onChange={handleTenantIdInputChange}/>
 <br></br>
 
-<button>Add FlatBooking</button>
+{/* <button>Add FlatBooking</button> */}
+<Link  onClick={()=>{props.bookFlat(flat.flatId);console.log(flat.flatId);}} to="/admin_user/getAllFlatBooking" className="btn btn-dark">Booked Flats</Link><br/><br/> 
+<Link  onClick={()=>{props.flatsList(flat.flatId);console.log(flat.flatId);}} to="/TenantController" className="btn btn-secondary">Back</Link> 
 
 </form>
+
 )
 
 

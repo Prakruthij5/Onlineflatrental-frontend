@@ -13,7 +13,7 @@ const LandlordController=()=>{
               Add Flat
             </Link>
 
-            
+            <Link  onClick={()=>{}} to="/Home" className="btn btn-success">Logout</Link> 
           </li>
         </div>
     )

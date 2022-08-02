@@ -28,6 +28,13 @@
   color: #61dafb;
 }
 
+.bg_image{
+  background-image: url('C:\Users\PRAKRJ\reactdemos\onlineflatrentalproject\flat1.jpg');
+  background-size: cover;
+  height: 200vh;
+  color: #100000;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +42,32 @@
   to {
     transform: rotate(360deg);
   }
+}
+.full-container{
+  max-width: 100%;
+  padding: 0 1rem;
+}
+.container .small-container medium-container{
+  max-width: 100%;
+  padding: 0 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.small-container{
+  max-width: 800px;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.flex-small,
+.flex-large{
+  padding-left: 1rem;
+  padding-right: 1rem;
 }

@@ -7,10 +7,14 @@ import {
 
 }from '../actions/tenants'
 
+
+
+
 export default function TenantList(props){
 
+    
     const dispatch=useDispatch();
-          
+       
           
           const [currentTenant,setCurrentTenant]=useState({});
           const [currentIndex,setCurrentIndex]=useState(-1);

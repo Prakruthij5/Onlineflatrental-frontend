@@ -20,6 +20,7 @@ import Login from './pages/Login';
 import Admin from './pages/admin';
 import AdminLogin from './pages/AdminLogin';
 
+
 import FlatBookingList from './components/FlatBookingList';
 import EditFlatBookingForm from './components/EditFlatBookingForm';
 import AddFlatBookingForm from './components/AddFlatBookingForm';
@@ -33,10 +34,14 @@ import EditTenantForm from './components/EditTenantForm';
 import TenantList from './components/TenantList';
 import LandlordLogin from './pages/LandlordLogin';
 import TenantLogin from './pages/TenantLogin';
+import AboutUs from './pages/AboutUs';
+import Contact from './pages/Contact';
 
 
 
 function App() {
+  const[flatId,setFlatId]=useState(); 
+  const navigate=useNavigate();
   
   const [landlordData,setLandlords]=useState([]);
 
@@ -154,6 +159,12 @@ function App() {
         setCurrentFlat
         ({flatId:flat.flatId,cost:flat.cost,availability:flat.availability});
        
+    }
+
+    const bookFlat=(flatId)=>{
+
+        navigate(`/User/addFlatBooking`);
+        setFlatId(flatId);
     }
     
     const updateFlat = (flatId,updatedFlat)=>{
@@ -287,7 +298,7 @@ const [currentFlatBooking,setCurrentFlatBooking]
    //brand price name on submission  
 async function addFlatBooking(flatbooking){
   try{
-  const response=await apiClient.post('/admin/addFlatBooking',flatbooking);
+  const response=await apiClient.post('/User/addFlatBooking',flatbooking);
     setFlatBookings([...flatbookings,response.data]);
     console.log(flatbookings);
     
@@ -332,142 +343,149 @@ async function deleteFlatBooking(bookingNo){
       
       
       
-      return (<div>
-        <div className='container'>
-      
-        <div className='flex-row'>
-          <div className='flex-large'>
-            {editinglandlord ? (
-            <div>
-              <h2>Edit Landlord Form </h2>
-              <EditLandlordForm
-               setEditingLandlord={setEditingLandlord}
-               currentLandlord={currentlandlord}
-               updateLandlord={updateLandlord}
-                
+  return (<div class='bg_image' >
 
-
-               />
-               </div>):(
-
-                
-    
-        <BrowserRouter>
-       
-            <Routes>
-            <Route path='/' element={<Layout/>}>
-            <Route index element={<Home/>}/>
-              <Route path="landlord" element={<Landlord/>}/>
-              <Route path="tenant" element={<Tenant/>}/>
-              <Route path="userlogin" element={<UserLogin/>}/>
-            
-              <Route path="register" element={<Register/>}/>
-              <Route path="login" element={<Login/>}/>
-
-              <Route path="admin" element={<Admin/>}/>
-              <Route path="adminlogin" element={<AdminLogin/>}/>
-              <Route path="admincontroller" element={<AdminController/>}/>
-              <Route path="TenantLogin" element={<TenantLogin/>}/>
-              <Route path="LandlordLogin" element={<LandlordLogin/>}/>
-              
-
-              <Route path="usercontroller" element={<UserController/>}/>
-              <Route path="tenantcontroller" element={<TenantController/>}/>
-              <Route path="landlordcontroller" element={<LandlordController/>}/>
-              
-              
-              
+    <div className='container'>
   
-              
+
+
+
+    <div className='flex-row'>
+      <div className='flex-large'>
+        {editinglandlord ? (
+        <div>
+          <h2>Edit Landlord Form </h2>
+          <EditLandlordForm
+           setEditingLandlord={setEditingLandlord}
+           currentLandlord={currentlandlord}
+           updateLandlord={updateLandlord}
+            
+
+
+           />
+           </div>):(
+
+            
+
+   
+   
+        <Routes>
+        <Route path='/' element={<Layout/>}>
+        <Route index element={<Home/>}/>
+          <Route path="landlord" element={<Landlord/>}/>
+          <Route path="tenant" element={<Tenant/>}/>
+          <Route path="userlogin" element={<UserLogin/>}/>
+        
+          <Route path="register" element={<Register/>}/>
+          <Route path="login" element={<Login/>}/>
+          <Route path="AboutUs" element={<AboutUs/>}/>
+          <Route path="Contact" element={<Contact/>}/>
+
+          <Route path="admin" element={<Admin/>}/>
+          <Route path="adminlogin" element={<AdminLogin/>}/>
+          <Route path="admincontroller" element={<AdminController/>}/>
+          <Route path="TenantLogin" element={<TenantLogin/>}/>
+          <Route path="LandlordLogin" element={<LandlordLogin/>}/>
+          
+
+          <Route path="usercontroller" element={<UserController/>}/>
+          <Route path="tenantcontroller" element={<TenantController/>}/>
+          <Route path="landlordcontroller" element={<LandlordController/>}/>
+          
+          
+          
+
+          
 
 
 {/* Route path for landlord  */}            
 
-        <Route path='/' element={<LandlordList 
-        landlordData={landlordData} 
-             editLandlord={editLandlord}
-             deleteLandlord={deleteLandlord} />} ></Route>
-              <Route path='/Admin/addLandlord' element={<AddLandlordForm addLandlord={addLandlord}/>} />
-             <Route path='/admin_user/getAllLandlord' element={<LandlordList 
-             landlordData={landlordData} 
-             editLandlord={editLandlord}
-             deleteLandlord={deleteLandlord} />}>
-             </Route>
-             <Route path="/Admin/updatelandlord/:landlordId" element={<EditLandlordForm /> }></Route>
+    <Route path='/' element={<LandlordList 
+    landlordData={landlordData} 
+         editLandlord={editLandlord}
+         deleteLandlord={deleteLandlord} />} ></Route>
+          <Route path='/Admin/addLandlord' element={<AddLandlordForm addLandlord={addLandlord}/>} />
+         <Route path='/admin_user/getAllLandlord' element={<LandlordList 
+         landlordData={landlordData} 
+         editLandlord={editLandlord}
+         deleteLandlord={deleteLandlord} />}>
+         </Route>
+         <Route path="/Admin/updatelandlord/:landlordId" element={<EditLandlordForm /> }></Route>
 
 
 {/* Route path for flats */}
 
-      <Route path='/' element={<FlatList 
-      flatData={flatData} 
-     editFlat={editFlat}
-     deleteFlat={deleteFlat} />} ></Route>
-    <Route exact path='/User/addFlat' element={<AddLandlordFlatForm addFlat={addFlat}/>} />      
-     <Route path='/admin_user/viewAllFlat' element={<FlatList 
-      flatData={flatData} 
-     editFlat={editFlat}
-     deleteFlat={deleteFlat} />}>
+  <Route path='/' element={<FlatList 
+  flatData={flatData} 
+  bookFlat={bookFlat}
+ editFlat={editFlat}
+ deleteFlat={deleteFlat} />} ></Route>
+<Route exact path='/User/addFlat' element={<AddLandlordFlatForm addFlat={addFlat}/>} />      
+ <Route path='/admin_user/viewAllFlat' element={<FlatList 
+  flatData={flatData} 
+ editFlat={editFlat}
+ deleteFlat={deleteFlat} />}>
 
-     </Route>
-     <Route path="/flats/:flatId" element={<EditFlatForm /> }></Route>
-    
+ </Route>
+ <Route path="/flats/:flatId" element={<EditFlatForm /> }></Route>
+
 
 {/* Route path for tenant */}
 
-     <Route path='/' element={<TenantList 
-    tenantData={tenantData} 
-         editTenant={editTenant}
-         deleteTenant={deleteTenant} />} ></Route>
-          <Route exact path="/Admin/addTenant" element={<AddTenantForm addTenant={addTenant}/>} />
-         
-         <Route path='/admin_user/viewAllTenant' element={<TenantList 
-    tenantData={tenantData} 
-         editTenant={editTenant}
-         deleteTenant={deleteTenant} />}>
+ <Route path='/' element={<TenantList 
+tenantData={tenantData} 
+     editTenant={editTenant}
+     deleteTenant={deleteTenant} />} ></Route>
+      <Route exact path="/Admin/addTenant" element={<AddTenantForm addTenant={addTenant}/>} />
+     
+     <Route path='/admin_user/viewAllTenant' element={<TenantList 
+tenantData={tenantData} 
+     editTenant={editTenant}
+     deleteTenant={deleteTenant} />}>
 
-         </Route>
-         <Route path="/tenants/:tenant_id" element={<EditTenantForm /> }></Route>  
+     </Route>
+     <Route path="/tenants/:tenant_id" element={<EditTenantForm /> }></Route>  
 
 
 
 {/* Route path for FlatBooking */}
 
-         <Route path='/' element={<FlatBookingList
-         flatbookingData={flatbookings}
-     editFlatBooking={editFlatBooking}
-     deleteFlatBooking={deleteFlatBooking} />} ></Route> 
-      <Route exact path="/User/addFlatBooking" element={<AddFlatBookingForm addFlatBooking={addFlatBooking}/>} />
-      
-     
-      <Route path='/admin_user/getAllFlatBooking' element={<FlatBookingList
-      flatbookingData={flatbookings}
-      editFlatBooking={editFlatBooking}
-       deleteFlatBooking={deleteFlatBooking} />}>
-      </Route>
-      <Route path="/flatBookings/:bookingNo" element={<EditFlatBookingForm /> }></Route>
-      
-
-
-
-
-
-
-
-
-
-
-
-            
-            </Route>
-
-            </Routes>
-            
-        
-        
-        </BrowserRouter>
-        )}</div></div></div></div>
-    )}
-    
+     <Route path='/' element={<FlatBookingList
+     flatbookingData={flatbookings}
+ editFlatBooking={editFlatBooking}
+ deleteFlatBooking={deleteFlatBooking} />} ></Route> 
+  <Route  path="/User/addFlatBooking" element={<AddFlatBookingForm addFlatBooking={addFlatBooking} flatId={flatId}/>} />
+  
  
+  <Route path='/admin_user/getAllFlatBooking' element={<FlatBookingList
+  flatbookingData={flatbookings}
+  editFlatBooking={editFlatBooking}
+   deleteFlatBooking={deleteFlatBooking} />}>
+  </Route>
+  <Route path="/flatBookings/:bookingNo" element={<EditFlatBookingForm /> }></Route>
+  
+
+
+
+
+
+
+
+
+
+
+
+        
+        </Route>
+
+        </Routes>
+        
+    
+    
+    
+    )}</div></div></div></div>
+)}
+
+
 
 export default App;

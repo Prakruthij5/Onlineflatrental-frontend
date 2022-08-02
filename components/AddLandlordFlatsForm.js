@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom'
 //import { useDispatch } from 'react-redux';
 //import { addFlat } from '../actions/flats';
 export default function AddLandlordFlatsForm(props){
@@ -84,12 +85,14 @@ export default function AddLandlordFlatsForm(props){
              onChange={handleInputChange}/>
 
             <br/>
-            <label>Availability</label><br/>
-            <input 
-             type='text'
-             name='availability'
-             value={flat.availability}
-             onChange={handleInputChange}/>
+            <label>Avaiability</label>
+
+         <select name="availability" id="availability"
+         onChange={handleInputChange}>
+         <option value=" "></option>
+         <option value="Available">Available</option>
+         <option value="Not Available">Not Available</option>
+         </select>
            
             <br/>
          <label>FlatAddress_Id</label><br/>
@@ -100,20 +103,28 @@ export default function AddLandlordFlatsForm(props){
              onChange={handleFlatAddressChange}/>
            
             <br/> 
-            <label>Street</label><br/>
-            <input 
-             type='text'
-             name='street'
-             value={flatAddress.street}
-             onChange={handleFlatAddressChange}/>
+            <label>Street</label>
+            <select name="street" id="street" 
+              onChange={handleFlatAddressChange}
+              >
+              <option value=" "></option>
+                <option value="BookCenter">BookCenter</option>
+                <option value="RaoStreet">RaoStreet</option>
+                <option value="WalkerStreet">WalkerStreet</option>
+                <option value="WillStreet">WillStreet</option>
+          </select>
            
             <br/>
-            <label>City</label><br/>
-            <input 
-             type='text'
-             name='city'
-             value={flatAddress.city}
-             onChange={handleFlatAddressChange}/>
+            <label>City</label>
+            <select name="city" id="city" 
+              onChange={handleFlatAddressChange}
+              >
+              <option value=" "></option>
+                <option value="Guntur">Guntur</option>
+                <option value="Bapatla">Bapatla</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Bangalore">Bangalore</option>
+          </select>
            
             <br/>
             <label>Pin</label><br/>
@@ -124,24 +135,35 @@ export default function AddLandlordFlatsForm(props){
              onChange={handleFlatAddressChange}/>
            
             <br/>
-            <label>State</label><br/>
-            <input 
-             type='text'
-             name='state'
-             value={flatAddress.state}
-             onChange={handleFlatAddressChange}/>
+            <label>State</label>
+            <select name="state" id="state" 
+              onChange={handleFlatAddressChange}
+              >
+               <option value=" "></option>
+                <option value="AndhraPradesh">AndhraPradesh</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Maharashtra">Maharashtra</option>
+                </select>
            
             <br/>
-            <label>Country</label><br/>
-            <input 
-             type='text'
-             name='country'
-             value={flatAddress.country}
-             onChange={handleFlatAddressChange}/>
+            <label>Country</label>
+            <select name="country" id="country" 
+              onChange={handleFlatAddressChange}
+              >
+               <option value=" "></option>
+               <option value="India">India</option>
+                <option value="Russia">Russia</option>
+                <option value="China">China</option>
+                <option value="Australia">Australia</option>
+                </select>
            
             <br/>
             
-           <input type='submit' value='Add New Flat'/>
+           <input type='submit' value='Add New Flat'/><br/><br/> 
+           {/* <td ><Link  onClick={()=>{props.addFlat(flat.flatId);console.log(flat.flatId);}} to="/admin_user/viewAllFlat" className="btn btn-dark">Add Flat</Link></td><br/> */}
+           <Link  onClick={()=>{props.flatsList();console.log();}} to="/admin_user/viewAllFlat" className="btn btn-secondary">Back</Link>
+
         </form>
 
     )

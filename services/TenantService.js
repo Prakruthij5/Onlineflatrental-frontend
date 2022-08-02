@@ -11,6 +11,8 @@ const create = data => {
 const update = (tenant_id,data) => {
   return http.put(`/Admin/updateTenant/${tenant_id}`,data);
 };
+
+
 const remove = tenant_id => {
   return http.delete(`/Admin/deleteTenant/${tenant_id}`);
 };

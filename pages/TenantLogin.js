@@ -29,6 +29,7 @@ const TenantLogin = ()=>{
         const response = await apiClient.post(`/LandlordAndTenant/userLogin`,{userName,password})
         localStorage.setItem('userDetails',JSON.stringify(response.data))
         setSuccess(true);
+        localStorage.setItem('tenantId',response.data.userId);
         console.log(response);
         navigate('/TenantController');
         
