@@ -1,28 +1,35 @@
 import React,{useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
-import { addFlatBooking } from '../reducers/flatbookings';
+import {useDispatch} from 'react-redux'
+import { addFlatBooking } from '../actions/flatbookings';
+import {Link} from 'react-router-dom';
 export default function AddFlatBookingForm(props){
 
+//const dispatch=useDispatch();
    
 const initialFlatBookingFormState = {
+   bookingFromDate: " ",
+ 
+   bookingToDate: " ",
+   flat: {
+
+      
    
-   
-      bookingFromDate: "2022-07-28",
+   flatId: 0
+   },
+   tenant: {
+    
+    
+     tenant_id: 2
      
-      bookingToDate: "2022-07-28",
-      flat: {
-        flatId: 0
-      },
-      tenant: {
-        
-        tenant_id: 0
-        
-      }
-    }
+   }
+ }
+   
+   
+      
 
 const initialFlatFormState={
-   flatId: 0,
-   flataddress_id: 0
+   flatId: 0
+   
 }
 
 const[flat,setFlat]=useState(initialFlatFormState);
@@ -43,6 +50,18 @@ const handleTenantIdInputChange=(event)=>{
   setFlatBooking({...flatbooking,...tenant});
 }
 
+/* const initialFlatAddressFormState={
+   flataddress_id: 0
+   
+} */
+
+/* const[flatAddress,setFlatAddress]=useState(initialFlatAddressFormState);
+const handleFlatAddressIdInputChange=(event)=>{
+   const {name,value}=event.target;
+   setFlatAddress({...flatAddress,[name]:value});
+  setFlatBooking({...flatbooking,...flatAddress});
+}  */
+
 const [flatbooking,setFlatBooking]=useState(initialFlatBookingFormState);
 
 const handleInputChange = (event)=>{
@@ -60,6 +79,9 @@ useEffect(()=>{
 useEffect(()=>{
    setFlatBooking({...flatbooking,tenant})},[tenant])
 
+ /* useEffect(()=>{
+      setFlatBooking({...flatbooking,flatAddress})},[flatAddress])  */
+
 const submitHandler=(event)=>{event.preventDefault();
 
    var today = new Date();
@@ -73,9 +95,12 @@ const submitHandler=(event)=>{event.preventDefault();
 
  //console.log(flatbooking+'from addflatbookingform')
    console.log(JSON.stringify(flatbooking))
+   if( !flatbooking.bookingFromDate || !flatbooking.bookingToDate ) return;
+   //dispatch(addFlatBooking(flatbooking));
    props.addFlatBooking(flatbooking);
    
    setFlatBooking(initialFlatBookingFormState);
+
 }
 return (
    <form onSubmit={submitHandler}>
@@ -95,6 +120,8 @@ name='bookingfromdate'
 value={flatbooking.bookingFromDate}
 onChange={handleInputChange}/>
 <br/> 
+
+
 <label>BookingToDate</label>
 <input 
 type='date-local'
@@ -111,13 +138,13 @@ value={flat.flatId}
 onChange={handleFlatIdInputChange}/>
 <br></br>
 
-{/* <label>FlatAddress_Id</label>
+ {/*  <label>FlatAddress_Id</label>
 <input 
 type='number'
 name='flataddress_id'
-value={flat.flataddress_id}
-onChange={handleFlatIdInputChange}/>
-<br></br> */}
+value={flatAddress.flataddress_id}
+onChange={handleFlatAddressIdInputChange}/>
+<br></br>  */} 
 
 <label>Tenant_Id</label>
 <input 
@@ -127,8 +154,12 @@ value={tenant.tenant_id}
 onChange={handleTenantIdInputChange}/>
 <br></br>
 
-{/* <button>Add FlatBooking</button> */}
-<Link  onClick={()=>{props.bookFlat(flat.flatId);console.log(flat.flatId);}} to="/admin_user/getAllFlatBooking" className="btn btn-dark">Booked Flats</Link><br/><br/> 
+
+  <button>Book Now</button>  
+{/* <Link  onClick={()=>{props.bookFlat();console.log();}} to="/admin_user/getAllFlatBooking" className="btn btn-dark">Booked Flats</Link><br/><br/>   */}
+<br/>
+<br/><Link  onClick={()=>{props.bookFlat();console.log();}} to="/admin_user/getAllFlatBooking" className="btn btn-dark">booked flats</Link><br/><br/>   
+
 <Link  onClick={()=>{props.flatsList(flat.flatId);console.log(flat.flatId);}} to="/TenantController" className="btn btn-secondary">Back</Link> 
 
 </form>

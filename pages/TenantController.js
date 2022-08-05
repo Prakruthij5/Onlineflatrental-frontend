@@ -6,7 +6,7 @@ const TenantController=()=>{
           
           <li className="nav-item">
             <Link to={"/admin_user/viewAllFlat"} className="nav-link">
-             List Of Flats
+             <b><h1>List Of Flats</h1></b>
             </Link>
           </li>
 

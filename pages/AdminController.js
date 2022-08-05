@@ -5,23 +5,23 @@ const AdminController=()=>{
 <div className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link to={"/Admin/addLandlord"} className="nav-link">
-             Add Landlord
+            <b> <h1>Add Landlord </h1></b>
             </Link>
           </li>
           <li className="nav-item">
             <Link to={"/Admin/addTenant"} className="nav-link">
-              Add Tenant
+             <b><h1>Add Tenant </h1></b>
             </Link>
             </li>
           
           <li className="nav-item">
             <Link to={"/admin_user/getAllFlatBooking"} className="nav-link">
-            List of Booking Flat
+            <b><h1>List of Booking Flat</h1></b>
             </Link>
           </li>
           <li className="nav-item">
             <Link to={"/admin_user/getAllLandlord"} className="nav-link">
-             List Of landlords
+             <b><h1>List Of landlords</h1></b>
             </Link>
           </li>
           <Link  onClick={()=>{}} to="/admin" >Logout</Link> 
